@@ -1,0 +1,127 @@
+1.Component- An web app is made of combination of one or more Component. It can be resued. 
+2. Single Page Application-  It does not reload whole page. It reload only those area which has been changed. By using the state, 
+whatever state chnaged only those DOM will rerenderd.
+3. npx create-react-app my-app - No need to install  create-react-app globally. By using npx we can create project without installing 
+create-react-app command. Else First need to installl create-react-app using npm install -g create-react-app and then run create-react-app my-ap.
+4. JSX- It is HTML like syntax with some special feature, special feature is that we can insert javascript in HTMl using the {}
+5. Children Property - To access the nested text of componnent we use childrent Property
+Ex- <Coder name="suresh" status="commited">Inside Text</Coder>
+To access use- {this.props.Children}
+6. State- state is used to changed the data internally. It re-rendered the DOM(means call the render() method automatically)
+ whenever data changed. If we define var without using state then when we change that var then it will not autormatically re-render
+7. Component Did Mount- This is called when render Method has been called hence DOM is avaialble now. So dynamic data can be put
+inside DOM'
+8. exact Property - by using this property the  requested path will only called when it matches with routes path.
+9. NavLink Vs Link-  NavLink automatically place the active class in the anchor tag.
+10. <a> tab vs Link tag- When we declare route path using a tag then the whole page reload means it sends request to server. While 
+when use Link then it does not realod the whole page.
+11. history.push('/') - Used to navigate from one page to antohter page
+12. withRouter()- This is an HOC by which we can get the routing history in that componnent. Which is useful to navigate from one
+page to antohter page.
+    Ex-  import {Link, NavLink, withRouter} from 'react-router-dom'
+          export default withRouter(Navbar);
+          function Navbar(props){
+            console.log(props)
+            return(
+                <nav>
+                <ul id="nav-mobile" className="right">
+                    <li><NavLink to="/">Home</NavLink></li>
+                    <li><NavLink to="/about">About</NavLink></li>
+                </ul>
+            </nav>
+            )
+        }
+13. Spread Operator - ... spread operator create an copy of array and then we can insert new data into that array. In this way
+previous data of array does not lost.
+    Ex- var x= [{id:1, name:"amit"}]
+    this.setState({ x: [...x, newDataObject]})
+14. HOC- It takes an component and return a new component. It solves the  problem of repetitive code. When we need to send an 
+common data to multiple componnent then we use the HOC. 
+    Ex- to pass the profile details across application
+15. what is reason to introduce Hooks and useEffects?
+Hooks- To manage the state in functional componnent and useEffects is used to utilize the power of ComponentDidMount and 
+ComponentDidUpdate.
+16. useState- useState return array which two elements. First elements acts like state of class based component and second elements
+acts like setState of classBasedcomponent. It is array desructuring. first element is used to access the data while second element
+used to update the data.
+17. useEffects - This is mixture of ComponentDidMount and ComponentDidUpdate. It always called after rendering or any change detetion.
+If we pass [] then it will render only one time after render. If we pass [age] i.e. some condition then it will render each time when 
+the conditionally changed.
+2. If we return an function from useEffects then it will acts as componentWillUnmount
+Ex- useEffects(()=>{
+    return ()=>{
+        // code clenaup code
+        console.log("willunomout will call")
+    }
+},[])
+18. refs- real world Use case of refs when neeed to focused on input element.
+19. useRef- In functional component we use useRef to create reference while in class based component we use React.creatRef().
+ ex-  const myInput = useRef(null); // functional component
+      const myInput =  React.creatRef() // classBasedcomponent 
+19. Context or Context APi-  Context works like provider and consumer. This is used to shared the data between components. One roots
+component provide data that is consume by all other component. It is alternative of redux.
+20. static varaible- static variable is used to context data in class based component only. Becoz of static we don't need to use
+<REact.consume> syntax.
+static contextType = myContext;
+21. useContext- If we have multiple context then we use useContext to fetch the data instead of writing React.Consume. becuase it 
+becomes more complicated when we have multiple context to use. So useContext solve that complexity.
+instead of writing below code 
+<myContext.Consumer>
+                {
+                    (data)=>{
+                        
+                        return (
+                            <React.Fragment>
+                                <h5>my name is {data.name}</h5>
+                                <h5>my age is {data.age}</h5>
+                            </React.Fragment>
+                        )
+                    }
+                }
+            </myContext.Consumer>
+we can use useContext to solve the above problem
+const name = useContext(NameContext);
+    const age = useContext(AgeContext);
+22. useReducer- This is  used for gloabl state managment. It takes reducer and inistal state as parameneter. To perform asynchors operation
+we use redux thunk in Redux. But here we can use useEffect directly 
+ 23. How to pass data from Child to parent- 
+ To pass the data from child to parent create the function in parent component and pass that funcion using props. Now tis props 
+ can be used in child component and can update.
+////////////////////////////// Redux ////////////////////////
+1. npm install --save redux react-redux
+Redux-To share the data between different component is complex in react. Redux solve that problem. It creates an central store.
+Then from central store it shares the data. Central store can be updated by any component and updated data will be refelect in all
+component.
+Process- 
+Component Subscribe to Central Store-> Dispatch action using type and payload(dyanmic data) to reducer->reducer updates to store->
+the udpated data will be reflect in all component that is Subscribe by store.
+
+Subscribe to central store- It means that like Subscribe to youtube channel. whenver any data changes then it automatically update.
+1. Provider-  it is used to connect react and redux toghether.
+ReactDOM.render(<Provider><App /></Provider>, document.getElementById('root')
+2. connect- This is an HOC by which component Subscribe to Central Store. To Subscribe the component means passed the state from 
+reducers to component. Means the global declared state (inside reducer) can be access in component as props.
+ex- const mapStateToProps = (state)=>{
+    return {
+        myName:state.name
+    }
+}
+3. Dispatch -Dispatch takes an action as argument which is sent to 
+4. Actions- Actions is javascript object which takes property as type and payload and pass to reducers through dispatch and 
+tells reducer what should change.
+5. Action Creators- This is function which return an action.
+6. Redux-thunk- This is used to make an web request it is use in action creators. To perform asynchorounous operation we use
+redux thunk. It is used to as middleware. redux thunk use inside action-creator.
+7. applymiddleware- It is used to import middleware redux-thunk.
+8. combineReducer- This is used to combine two or more reducer. Combine Reducer takes object as the name of different reducers.
+const masterReducer = combineReducers({
+    name:NameReducer,
+    wish:WishReducer
+})
+9. Use Selector-  It is alternative of the mapStateToProps. Means it is used ot get item from store as props and use in component
+ as props.
+10. Use Dispatch-=It is alternative of the mapDispatchToProps. Means it is used ot post item to reducer . These hooks can be only 
+use in functioanl component
+
+
+
