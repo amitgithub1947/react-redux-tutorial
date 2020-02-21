@@ -121,7 +121,7 @@ const masterReducer = combineReducers({
 9. Use Selector-  It is alternative of the mapStateToProps. Means it is used ot get item from store as props and use in component
  as props.
 10. Use Dispatch-=It is alternative of the mapDispatchToProps. Means it is used ot post item to reducer . These hooks can be only 
-use in functioanl component
+use in functioanl component.
 
 
 
