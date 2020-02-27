@@ -87,6 +87,14 @@ we use redux thunk in Redux. But here we can use useEffect directly
  23. How to pass data from Child to parent- 
  To pass the data from child to parent create the function in parent component and pass that funcion using props. Now tis props 
  can be used in child component and can update.
+ 24. React Vs Vue-
+ 1. React is not complete framework we have to go for other library like redux to make complete large application. while vue is
+ complete framework and can use for large application.
+ 2. The size of react is high (100kb) than vue (60 kb)
+ 3. React is slow as compared to vue
+ 4. It has large community while vue has small community.
+ 5. React support only one way data binding while vue support both one way and two way data binding.
+
 ////////////////////////////// Redux ////////////////////////
 1. npm install --save redux react-redux
 Redux-To share the data between different component is complex in react. Redux solve that problem. It creates an central store.

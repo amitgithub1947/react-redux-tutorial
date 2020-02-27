@@ -22,4 +22,4 @@ class  Home extends React.Component{
     }
 }
 
-  export default WithHOC(Home);
+export default WithHOC(Home);

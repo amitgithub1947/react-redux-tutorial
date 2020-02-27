@@ -1,0 +1,170 @@
+2. Vuejs Features- 
+   1. Templates
+   2. Reactivity
+   3. Routing
+   4. Components
+   5. Directive
+3.Lifecycle hooks- There are 8 lifecycle hooks
+    1. beforeCreate()- It gets called immediately after vue instance has been initialized. It excatly called before component is created.
+    2. Created()- This is called after beforeCreate Lifecycle hook. At this stage things like computed properties, watchers, events data binding activated
+    3. beforeMount()- It checks if any template is avaialble in the object to be reendered to DOM. If no templte is found, it 
+    considers the outer HTML of the defined element as HTML
+    4. Mounted()- In this phase , template is ready and fits data into tempate and creates the renderable element. 
+    5. beforeUpdate()-  If we do any changes then changes made and yet getting ready to update the DOM.
+    6. updated()- In this phase changes rendered in the DOM
+    7. beforeDestroy() - In this phase vue instance is ready to Directive
+    8. destroyed()- The destroyed hook gets invoked after successfully running destroy on the object.
+     destroyed() {
+         this.$destroy() 
+    }
+4. How to create Instance of Vue?
+    var vm = new({
+        //options
+    })
+5. Difference between One Way Data Binding & two way data binding?
+    One way Data Binding- In one way data binding UI does not automatically updates when data model changes. ex- v-bind
+    Two way data binding- UI automatically updates when data model changed. Ex- v-model
+6. What are the filters in vuejs?
+    Filters are like function that takes value, processed it and return the processed value as desired. 
+7. How to create custom filter in vue js?
+    Vue.filter() is used to create custom filter. It takes a unique filter name and function that takes value as
+    argument and return transformed value.
+    Vue.filter('reverse', function (value) {
+        return value.split('').reverse().join('')
+    })
+8. Directive- Directive is way to extend the behaviour of HTML by adding new attributes to HTML elements
+    1. v-if, v-show, v-hide, v-model etc.
+9. Type of Directive- 
+    1. General Direcitves, Literal Directives, Empty directive, custom Directive
+10. Vue Resource- VUE-resource is a plugin for vue.js that provides services for making web requests and handle
+    responses using a XMLHttpRequest or JSONP
+11- Props- props is the used to pass the data from parent component to its child component. 
+12. Components- Vue components are custom elements that help to extend basic HTML element to encapsulate reusable code.
+13. How Can you fetch query paramenter from router?
+    we can use $route.query to access paramenter ex- console.log(this.$route.query.test)
+14. what is equivalent of Angular Service in Vue.js?
+    Stateless Service- In vue we can use mixins
+    Statefull Service- use vuex
+15. Vuex- Vuex is state managment library for the vue application. it act as centralized store for all components
+in an application with rules that ensure state can be muted in predicatable fashion.
+
+16. Mixins- Mixins are a flexible way to distribute reusable functionalities for Vue components. A mixin object can contain any component options. 
+    When a component uses a mixin, all options in the mixin will be “mixed” into the component’s own options.
+    Ex - search on youtube channel
+    A mixin is a JavaScript object that can contain any option that a component can contain. All mixin content is merged with a component’s options when that component uses a mixin.
+
+17. what is best way to create constants that can access to entire app.
+    Define a file and variable outside of Vue app scope and use it throught application.
+    //const.js
+    export default {
+        c1: 'Constant 1',
+        c2: 'Constant 2'
+    }
+    // component.vue
+    import const from './const';
+    export default {
+    methods: {
+        method() {
+        return const.c1;
+        }
+    }
+    }
+18. what is the best way to communicate between sibling components in vue js?
+    We can use event bus to communicate between sibling components.
+    eventbus.js
+    /* Initilization of Event bus */
+    import Vue from 'vue';
+    const EventBus = new Vue();
+    export default EventBus;
+    app.vue
+    this.eventHub.$emit('update', data)
+    this.eventHub.$on('update', data => {
+        // do your thing
+    })
+19. VueJs Reactivity-  All properties defined in vuejs instance's data option are reactive means if they 
+change then components is automatically updated and re-rendered.
+20. Describe data flow between components in vuejs?
+    vuejs uses one-way data flow. Data is passed to child components from parent components using props
+    The child components can communicate back to paranet component via evenet. The parewnt can assign a handler to 
+    any event emmittted by the child component instance and data can be passed back to parent. The child component 
+    can emit a special event for updating the prosp passed to it.
+
+21. How do you reuse elements with key attribute?
+    Vue always tries to render elements as efficient as possible. So it tries to reuse the elements instead of building
+    them from scratch. But this behavior may cause problems in few scenarios. For example, if you try to render the same 
+    input element in both v-if and v-else blocks then it holds the previous value as below,
+    <template v-if="loginType === 'Admin'">
+        <label>Admin</label>
+        <input placeholder="Enter your ID">
+    </template>
+    <template v-else>
+        <label>Guest</label>
+        <input placeholder="Enter your name">
+    </template>
+    In this case, it shouldn't reuse. We can make both input elements as separate by applying key attribute as below,
+    <template v-if="loginType === 'Admin'">
+      <label>Admin</label>
+      <input placeholder="Enter your ID" key="admin-id">
+    </template>
+    <template v-else>
+      <label>Guest</label>
+      <input placeholder="Enter your name" key="user-name">
+    </template>
+22. Why we need key attribute in v-for directive?
+    key attribute identified unique item of v-for iteration. 
+23. What are the caveats of object changes detection?
+    Vue cannot detect changes for the object in property addition or deletion., Lets take an example of user data changes,
+    var vm = new Vue({
+    data: {  user: { name: 'John'}}
+    })
+    //`vm.name` is now reactive
+    vm.email = john@email.com // `vm.email` is NOT reactive
+    You can overcome this scenario using the Vue.set(object, key, value) method or Object.assign()
+    Vue.set(vm.user, 'email', john@email.com); or
+    vm.user = Object.assign({}, vm.user, {
+       email: john@email.com
+    })
+24. How do you communicate from child to parent using events?
+    If you want child wants to communicate back up to the parent, then emit an event from child using $event object to parent,
+    Vue.component('todo-tem', {
+    props: ['todo'],
+    template: `
+        <div class="todo-item">
+        <h3>{{ todo.title }}</h3>
+        <button v-on:click="$emit('increment-count', 1)">
+            Add
+        </button>
+        <div v-html="todo.description"></div>
+        </div>
+    `
+    })
+    Now you can use this todo-item in parent component to access the count value.
+    <ul v-for="todo in todos">
+        <li>
+         <todo-item
+            v-bind:key="todo.id"
+            v-bind:todo="todo" v-on:increment-count="total += 1"></todo-item>
+        </li>
+    </ul>
+    <span> Total todos count is {{total}}</span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

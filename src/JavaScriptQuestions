@@ -1,0 +1,101 @@
+Global Variable- To declare global variable inside functon we need window object..
+Ex - function a(){
+    window.value = 1;
+}
+function b(){
+    alert(window.value)
+}
+2. Javascript Datatype -  There are two type of data type
+   Primitive DataType - string, number, boolean, undefined, null
+   Non-primitive data type - array, object, regexp
+3. Object- An object is an entitiy that have state and behaviour(properties and method).
+There are three ways to create objects.
+    1. By Literal object,
+    2. by creating instance of objects\
+    3. by using object cnsturcotr- Create an function with arugment. And then these argument can be assigned with current object
+    using this keywaoord
+    Ex- Function name(id, name){
+        this.id =id;
+        this.name = name
+    }
+    e = new name(1,"ajay")
+4. Object.keys()- this method return the name of property in object in the form of array.
+5. find()It returns the value of the first element in the given array that satisfies the specified condition
+6. findIndex()- It returns the index value of the first element in the given array that satisfies the specified condition.
+7. indexOf() - it searches the specified element in the given array and returns the index of the first match.
+8. map()- This method calls the specified function for every array element and return new array. This method does not chnage the 
+orginal array.
+9. Window Object- window is object of browser. It is not object of javascript. Javaccript objects are- like array, string, etc.
+If html documents contain frame or iframe then browser creates additional window object for each frame.
+10. Navigator Object- This is used for brwoser detection. It is used to get the informtion about browser such as appCodeName, appName etc.
+11. Document Object- documents object represent the whole html documents. It is root element that represnt the html doucment. 
+It is used to add dynamic contetnt to web page. It creates an node tree.
+12. innerHTML vs InnerText- innerHTMl is used to add dynamic html document such as comment form etc. while innerText is used to
+write the dynamic text rather than dynamic html. ex validation msg.
+innerText- Strength:<span id="mylocation">no strength</span>  
+innerHTMl- <script type="text/javascript" >  
+function showcommentform() {  
+var data="Name:<input type='text' name='name'><br>Comment:<br><textarea rows='5' cols='80'></textarea>  
+<br><input type='submit' value='Post Comment'>";  
+document.getElementById('mylocation').innerHTML=data;  
+}  
+</script>  
+<form name="myForm">  
+<input type="button" value="comment" onclick="showcommentform()">  
+<div id="mylocation"></div>  
+</form> 
+13. Class- Calss can be created using class Declrationa and class expression
+Class declration - same like function decleration. but it is not hoisting means it can not be call before its declration.
+ it is required to declare the class before invoking it. A class can be declared once only. If we try to declare class more than one time, it throws an error.
+Class Expression- We can created class like function expression. We don't need to give the class name it can be created like
+anonymous function. Class expression allow us to re-declare the same class.
+14. Object.entries- This method return the array of object in form of [key,value] paris.
+Ex-  const obj = { 10: 'arry', 21: 'barry', 23: 'carry' }; 
+      Object.entries(obj[1]) // [21, 'barry]
+15. Why we need to use prototype?
+  In javascript whenever an object is created then corresponding function are loaded into memorey. So a new copy of function is created
+  on each object creation.
+  In prototype based approach- all object shares the same function. This ingnores the requiremtn of creating a new copy of function 
+  each time when object is created. Thus functions loaded once in memory.
+16. Constructor Method -  this is method which is used to initilize and create an object. It is called when a memory is allocated
+for an object.
+17. super keyword- This is used to call parent class constructor.
+18. Inhertience- This is mechanism which allow us to resue the propreties and methods of paretn class in child class.
+19 .extends keyword- this keyword allow us to get all properties and method of parent class.
+Ex-  class Moment extends Date {  
+  constructor() {  
+    super();  
+  }} 
+  var m=new Moment();
+  document.writeln(m.getDate()+"-"+(m.getMonth()+1)+"-"+m.getFullYear());  
+20. Polymorphism- It provides an ability to call the same method on different JavaScript objects
+21. Abstraction- An abstraction is a way of hiding the implementation details and showing only the functionality to the users. In other words, it ignores the irrelevant details and shows only the required one.
+We cannot create an instance of Abstract Class.
+22. call() & apply() - The call() and apply() method allows us to write a method that can be used on different objects.
+<script>  
+var emp_address = {  
+    fullAddress: function() {  
+        return this.company + " " + this.city+" "+this.state;  
+    }  
+}  
+var address = {  
+    company:"Javatpoint",  
+    city:"Noida",  
+    state:"UP",  
+}  
+document.writeln(emp_address.fullAddress.call(address));   
+document.writeln(emp_address.fullAddress.apply(address));</script>  
+23. Hoisting example- x=10;  
+document.write(x);  
+var x;
+24. use strict mode-  Being a scripting language, sometimes the JavaScript code displays the correct result even it has some errors. To overcome this problem we can use the JavaScript strict mode.
+Ex- "use strict"
+x=10;  
+console.log(x);
+//reference error x is not defined
+
+
+
+
+
+
