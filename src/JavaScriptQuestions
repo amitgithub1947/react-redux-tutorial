@@ -93,6 +93,29 @@ Ex- "use strict"
 x=10;  
 console.log(x);
 //reference error x is not defined
+25. Let- let keyword can't be re-declared in same scope.
+26. this in arrow function- in regurlar anonymous function, this refers to that object that called function like button click event.
+in arrow function this refers to that object that defined the arrow function. like window object.
+27. Static Method-  it is defined on the class itself and not on the prototype. it means we can call this method only using the
+class name not using the object.
+class A {
+    static hello(){
+        return 'helo'
+    }
+}
+Call.A() // correcrt
+obj = new A ();
+obj.hello() //wrong
+
+28. Array.indexOf() -Search an array for an element value and returns its position.
+var fruits = ["Apple", "Orange", "Apple", "Mango"];
+var a = fruits.indexOf("Apple"); //return 0
+29. Array.lastIndexOf() - Array.lastIndexOf() is the same as Array.indexOf(), but searches from the end of the array.
+var fruits = ["Apple", "Orange", "Apple", "Mango"];
+var a = fruits.lastIndexOf("Apple"); // return 3
+30. Primitive value- The primitive value is value that has no properties or method. Ex- number, boolena, string, null, undefined
+Note- evertying tis object in javascript. Number, boolena, string can also be objects if they created using new Keyword.
+
 
 
 
